@@ -291,7 +291,7 @@ boolean slot[] = new boolean[max_deadline +1 ];
     static  class eraseOverlapIntervals_comparator  implements Comparator< eraseOverlapIntervals > {
 
         @Override
-        public int eraseOverlapIntervals(eraseOverlapIntervals a, eraseOverlapIntervals b) {
+        public int compare(eraseOverlapIntervals a, eraseOverlapIntervals b) {
             return a.end - b.end;
         }
     }
@@ -301,7 +301,7 @@ boolean slot[] = new boolean[max_deadline +1 ];
         ArrayList <eraseOverlapIntervals> list = new ArrayList<>();
 
         for (int  j = 0 ; j<i.length ; j++){
-            list.add(new eraseOverlapIntervals(i[j][0]) ,i[j][1] ) );
+            list.add(new eraseOverlapIntervals(j, i[j][0], i[j][1]));
         }
 
         Collections.sort(list , new eraseOverlapIntervals_comparator());
@@ -459,6 +459,56 @@ boolean slot[] = new boolean[max_deadline +1 ];
  return   max;
     }
 
+    public boolean checkValidString(String s) {
+
+        int n = s.length();
+        int count = 0 ;
+        int c2 = 0;
+        int star = 0;
+
+        for( int i  = 0 ; i < s.length() ; i ++){
+
+            char ch = s.charAt(i);
+            if(ch=='*'){
+                star++;
+            }
+            else if( ch == '('){
+                count++;
+            }
+            else{
+                count-- ;
+            }
+
+        }
+
+
+        if( star==0 && count < 0 )
+        {
+            return false ;
+        }
+
+        if( count == 0 ){
+            return true ;
+        }
+        else if ( count > 0)
+        {
+            int plus = count-star;
+            if(plus==0)
+            {
+                return true;
+            }
+        }
+        else {
+            int minus = count+star;
+            if(minus == 0){
+                return true;
+            }
+        }
+
+
+        return false ;
+
+    }
 
 
 
