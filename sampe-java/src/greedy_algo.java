@@ -459,58 +459,81 @@ boolean slot[] = new boolean[max_deadline +1 ];
  return   max;
     }
 
-    public boolean checkValidString(String s) {
+//    public boolean checkValidString(String s) {      wrong approach
+//
+//        int n = s.length();
+//        int count = 0 ;
+//        int c2 = 0;
+//        int star = 0;
+//
+//        for( int i  = 0 ; i < s.length() ; i ++){
+//
+//            char ch = s.charAt(i);
+//            if(ch=='*'){
+//                star++;
+//            }
+//            else if( ch == '('){
+//                count++;
+//            }
+//            else{
+//                count-- ;
+//            }
+//
+//        }
+//
+//
+//        if( star==0 && count < 0 )
+//        {
+//            return false ;
+//        }
+//
+//        if( count == 0 ){
+//            return true ;
+//        }
+//        else if ( count > 0)
+//        {
+//            int plus = count-star;
+//            if(plus==0)
+//            {
+//                return true;
+//            }
+//        }
+//        else {
+//            int minus = count+star;
+//            if(minus == 0){
+//                return true;
+//            }
+//        }
+//
+//
+//        return false ;
+//
+//    }
 
-        int n = s.length();
-        int count = 0 ;
-        int c2 = 0;
-        int star = 0;
+    public  static   boolean isValid(String s , int index , int count ) {
 
-        for( int i  = 0 ; i < s.length() ; i ++){
+        int n = s.length() ;
 
-            char ch = s.charAt(i);
-            if(ch=='*'){
-                star++;
-            }
-            else if( ch == '('){
-                count++;
-            }
-            else{
-                count-- ;
-            }
 
+        if (index == n) {
+            return false;
         }
 
-
-        if( star==0 && count < 0 )
-        {
-            return false ;
+        if (count <  0) {
+            return false;
         }
 
-        if( count == 0 ){
-            return true ;
+        if (s.charAt(index)==')'){
+            isValid( s , index+1 , count+1);
         }
-        else if ( count > 0)
-        {
-            int plus = count-star;
-            if(plus==0)
-            {
-                return true;
-            }
-        }
-        else {
-            int minus = count+star;
-            if(minus == 0){
-                return true;
-            }
+        else if ( s .charAt(index) == ')'){
+            isValid(s , index + 1 , count -1 );
         }
 
+        isValid( s , index+1 , count);
 
-        return false ;
-
+        return  false;
     }
-
-
 
 
 
