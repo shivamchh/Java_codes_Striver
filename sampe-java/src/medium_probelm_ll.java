@@ -25,13 +25,9 @@ public class medium_probelm_ll {
     private static node convertArr2_ll(int[] arr) {
 
         node head = new node(arr[0]);
-
         node mover = head;
-
         for (int i = 1; i < arr.length; i++) {
-
             node temp = new node(arr[i]);
-
             mover.next = temp;
             mover = temp;
         }
